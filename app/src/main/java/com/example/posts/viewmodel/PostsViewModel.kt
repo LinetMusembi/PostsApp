@@ -11,11 +11,13 @@ class PostsViewModel: ViewModel() {
     val postsRepo=PostsRepository()
     var postsLiveData= MutableLiveData<List<Posts>>()
     var errorLiveData= MutableLiveData<String>()
-    fun fetchProducts(){
+    fun fetchPosts(){
         viewModelScope.launch {
             val response =postsRepo.getPosts()
             if(response.isSuccessful){
-                postsLiveData.postValue(response.body()?.posts)
+                val postsLists=response.body()?: emptyList()
+
+                postsLiveData.postValue(postsLists)
             }
             else{
                 errorLiveData.postValue(response.errorBody()?.string())

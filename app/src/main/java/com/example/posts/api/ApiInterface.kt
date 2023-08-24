@@ -7,10 +7,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiInterface {
-    @GET("/products")
-    suspend fun getProducts(): Response<PostsResponse>
+    @GET("/posts")
+    suspend fun getPosts():Response<List<Posts>>
 
-    @GET("/products{id}")
-    suspend fun getProducts(@Path("id")productId:Int): Response<Posts>
+
 
 }

@@ -14,8 +14,8 @@ import com.example.posts.viewmodel.PostsViewModel
 
 
 class MainActivity() : AppCompatActivity(){
-    val postsViewModel:PostsViewModel by viewModels()
-    lateinit var binding:ActivityMainBinding
+    private val postsViewModel:PostsViewModel by viewModels()
+    private lateinit var binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class MainActivity() : AppCompatActivity(){
 
     override fun onResume() {
         super.onResume()
-        postsViewModel.fetchProducts()
+        postsViewModel.fetchPosts()
         postsViewModel.postsLiveData.observe(this, Observer { postsList ->
             Toast.makeText(
                 baseContext,
